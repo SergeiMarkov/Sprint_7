@@ -1,16 +1,19 @@
 import courier.Courier;
 import courier.CourierDefaultData;
 import courier.CourierSteps;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.*;
 
 public class LoginCourierTest extends CourierDefaultData {
-    String id;
+
+    protected String id;
 
     @After
     public void deleteCourier() {
@@ -20,7 +23,8 @@ public class LoginCourierTest extends CourierDefaultData {
     }
 
     @Test
-    @DisplayName("Успешная авторизация курьера в системе с существующими login и password. Возвращение id")
+    @DisplayName("Успешная авторизация курьера в системе. Возвращение id")
+    @Description("Позитивная проверка авторизации курьера с существующими login и password в системе, возвращение поля id в ответе, endpoint /api/v1/courier/login")
     public void loginCourierTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -37,6 +41,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Авторизация курьера в системе с указанием неправильного (несуществующего) login")
+    @Description("Негативнная проверка авторизации курьера с несуществующим login в системе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithWrongLoginTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -54,6 +59,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Авторизация курьера в системе с указанием неправильного (несуществующего) password")
+    @Description("Негативнная проверка авторизации курьера с несуществующим password в системе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithWrongPasswordTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -71,6 +77,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Авторизация курьера в системе с указанием неправильных (несуществующих) login и password")
+    @Description("Негативнная проверка авторизации курьера с несуществующими login и password в системе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithWrongDataTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -89,6 +96,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Логин в системе без поля login")
+    @Description("Негативнная проверка авторизации курьера без поля login в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutFieldLoginTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -106,6 +114,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Логин в системе без login")
+    @Description("Негативнная проверка авторизации курьера без заполнения поля login в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutLoginTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -124,6 +133,7 @@ public class LoginCourierTest extends CourierDefaultData {
     // Тест выдает ошибку 504
     @Test
     @DisplayName("Логин в системе без поля password")
+    @Description("Негативнная проверка авторизации курьера без поля password в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutFieldPasswordTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -141,6 +151,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Логин в системе без password")
+    @Description("Негативнная проверка авторизации курьера без заполнения поля password в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutPasswordTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -159,6 +170,7 @@ public class LoginCourierTest extends CourierDefaultData {
     // Тест выдает ошибку 504
     @Test
     @DisplayName("Логин в системе без поля login и password")
+    @Description("Негативнная проверка авторизации курьера без поля login и password в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutFieldDataTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);
@@ -177,6 +189,7 @@ public class LoginCourierTest extends CourierDefaultData {
 
     @Test
     @DisplayName("Логин в системе без login и password")
+    @Description("Негативнная проверка авторизации курьера без заполнения поля login и password в запросе, возвращение текста ошибки, endpoint /api/v1/courier/login")
     public void loginCourierWithoutDataTest() {
         Courier courier = CourierSteps.createCourierWithDefaultData();
         CourierSteps.createCourier(courier);

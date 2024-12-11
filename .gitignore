@@ -11,6 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea
+
 
 ### Eclipse ###
 .apt_generated
@@ -37,7 +39,5 @@ build/
 ### Mac OS ###
 .DS_Store
 /.allure/
-/.idea/
 
-
-
+C:\Users\Acer\IdeaProjects\Sprint_7\.idea

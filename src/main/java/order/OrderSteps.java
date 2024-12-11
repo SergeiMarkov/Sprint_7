@@ -21,4 +21,25 @@ public class OrderSteps {
                 .when()
                 .get(ORDER_PATH);
     }
+
+    @Step("Получаем track после успешнного создания заказа в системе")
+    public static String getTrack(Order order) {
+        Response response = createOrder(order);
+        if (response.getStatusCode() == 201) {
+            return response
+                    .then()
+                    .extract()
+                    .path("track").toString();
+        } else {
+            return null;
+        }
+    }
+
+    @Step("Отмена заказа")
+    public static void cancelOrder(String track) {
+        spec()
+                .body(track)
+                .when()
+                .put(ORDER_PATH + "/cancel");
+    }
 }

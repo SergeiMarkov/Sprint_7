@@ -20,6 +20,12 @@ public class Order {
     private String comment;
     private List<String> color;
 
+    private String track;
+
+    public Order(String track) {
+        this.track = track;
+    }
+
     public Order (List<String> color) {
         this.firstName = "Naruto";
         this.lastName = "Uchiha";
